@@ -35,7 +35,7 @@ class ME2AIMCPServer(OfficialMCPServer):
         self,
         server_name: str,
         description: str = "",
-        version: str = "0.1.0",
+        version: str = "0.0.6",
         debug: bool = False
     ) -> None:
         """Initialize a ME2AI MCP server.

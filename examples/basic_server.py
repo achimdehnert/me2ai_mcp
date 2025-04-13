@@ -19,7 +19,7 @@ def main():
     server = ME2AIMCPServer(
         server_name="example_server",
         description="Basic Example ME2AI MCP Server",
-        version="0.0.5"
+        version="0.0.6"
     )
     
     print(f"Starting {server.description} (v{server.version})")

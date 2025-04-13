@@ -8,7 +8,7 @@ from .base import ME2AIMCPServer, BaseTool
 from .auth import AuthManager, APIKeyAuth, TokenAuth
 from .utils import sanitize_input, format_response, extract_text
 
-__version__ = "0.0.5"
+__version__ = "0.0.6"
 
 __all__ = [
     "ME2AIMCPServer",
