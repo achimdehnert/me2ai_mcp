@@ -5,11 +5,11 @@ from setuptools import setup, find_packages
 
 setup(
     name="me2ai_mcp",
-    version="0.0.5",
+    version="0.0.6",
     description="Enhanced Model Context Protocol framework for ME2AI agents and services",
     author="ME2AI Team",
     author_email="info@me2ai.dev",
-    long_description=open("me2ai_mcp/README.md", encoding="utf-8").read(),
+    long_description=open("README.md", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
     url="https://github.com/achimdehnert/me2ai",
     packages=find_packages(),

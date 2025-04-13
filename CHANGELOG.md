@@ -7,7 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.6] - 2025-04-13
+
 ### Added
+
 - Groq LLM provider support with Mixtral-8x7b model
 - Comprehensive test suite for CLI and load testing
 - Memory management system for conversation history
@@ -16,12 +19,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Dating expert agent with relationship advice tools
 
 ### Changed
+
 - Improved agent initialization to properly handle system prompts and roles
 - Enhanced async/await patterns in CLI for better performance
 - Updated expert agents to use proper memory management
-- Refactored agent factory for better error handling
+- Consistent package naming across all platforms (PyPI, imports, GitHub)
 
 ### Fixed
+
+- Package configuration with proper README path
+- Standardized version numbering
+- Refactored agent factory for better error handling
 - Agent initialization issues with system prompts and roles
 - Memory initialization in expert agents
 - Async response handling in CLI

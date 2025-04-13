@@ -3,8 +3,8 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "me2ai"
-version = "0.1.0"
+name = "me2ai_mcp"
+version = "0.0.6"
 description = "AI coaching system with multiple expert agents"
 readme = "README.md"
 requires-python = ">=3.8"
