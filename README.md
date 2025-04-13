@@ -13,12 +13,21 @@ This framework provides a consistent foundation for all ME2AI MCP server impleme
 - **Authentication System**: API Key and Token authentication with environment variable support
 - **Built-in Utilities**: Text sanitization, response formatting, HTML processing
 - **Standardized Patterns**: Consistent response structures and error formats
+- **Comprehensive Testing**: Unit, integration, and performance tests with 80%+ coverage
+- **CI/CD Integration**: GitHub Actions workflows for automated testing and quality assurance
+- **Code Quality Tools**: Automated linting, formatting, and type checking
 
 ## Installation
 
 ```bash
 # Install from PyPI (recommended)
 pip install me2ai_mcp
+
+# Install specific version
+pip install me2ai_mcp==0.0.6
+
+# Install from GitHub
+pip install git+https://github.com/achimdehnert/me2ai_mcp.git
 
 # Install with all optional dependencies
 pip install me2ai_mcp[all]
