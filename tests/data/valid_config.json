@@ -1,0 +1,17 @@
+{
+    "server_name": "test-mcp",
+    "description": "Test MCP Server for Robot Framework Tests",
+    "version": "1.0.0-test",
+    "debug": true,
+    "logging": {
+        "level": "DEBUG",
+        "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    },
+    "tools": {
+        "enabled": ["server_info", "echo", "fetch_webpage", "parse_html", "url_utils"]
+    },
+    "authentication": {
+        "enabled": false,
+        "providers": []
+    }
+}

@@ -1,0 +1,22 @@
+Fetching https://www.hnu.de/...
+
+Title: Startseite - Hochschule Neu-Ulm
+
+Top Headings:
+- h1: Hochschule Neu-Ulm
+- h2: Käpsele-Programm der HNU
+- h2: News aus der HNU
+- h2: Veranstaltungen
+- h2: Weitere Veranstaltungen & Termine
+- h2: Zum Akademischen Kalender
+- h2: Alles, was du zum Studium wissen musst
+- h2: Akkreditierung und Zertifikate
+- h2: Service
+- h3: 09.04.2025,Studium:Ready for Take-Off: Praxisprojekt zu interkulturellem Management mit dem Flughafen…
+
+Main Content Excerpts:
+1. Das neue HNU-Käpsele-Programm fördert Studierende, die herausragende akademische Leistungen und besonderes Engagement zeigen. Die “HNU-Käpsele” profitieren von Seminaren, die wichtige Future Skills ve...
+2. Praxisnahe Konzepte und Strategien zu Unternehmenskultur und interkulturellem Management: Damit beschäftigen sich Studierende der Bachelorstudiengänge Betriebswirtschaft und Wirtschaftspsychologie an…
+3. Über 6.200 Personen besuchten den GG Bavaria Business Day am 28. März in München. Einer von ihnen war Prof. Michael Hebel, Professor für Game Art und Design an der Hochschule Neu-Ulm (HNU), der…
+
+Fetch completed successfully!

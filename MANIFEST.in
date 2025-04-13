@@ -1,0 +1,5 @@
+include LICENSE
+include README.md
+include me2ai_mcp/README.md
+recursive-include me2ai_mcp *.py
+recursive-include me2ai_mcp *.md

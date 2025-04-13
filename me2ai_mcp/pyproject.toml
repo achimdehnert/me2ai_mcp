@@ -1,0 +1,91 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "me2ai_mcp"
+version = "0.0.5"
+description = "Enhanced Model Context Protocol framework for ME2AI agents and services"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [
+    { name = "ME2AI Team", email = "info@me2ai.dev" }
+]
+keywords = ["mcp", "model", "context", "protocol", "ai", "agent"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "mcp>=1.6.0",
+    "requests>=2.31.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+web = [
+    "beautifulsoup4>=4.12.0",
+]
+github = [
+    "PyGithub>=2.1.0",
+]
+test = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-cov>=4.1.0",
+    "pytest-html>=4.0.0",
+    "pytest-json>=0.4.0",
+    "psutil>=5.9.0",
+]
+robot = [
+    "robotframework>=6.0.0",
+    "robotframework-seleniumlibrary>=6.0.0",
+]
+all = [
+    "beautifulsoup4>=4.12.0",
+    "PyGithub>=2.1.0",
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-cov>=4.1.0",
+    "pytest-html>=4.0.0",
+    "pytest-json>=0.4.0",
+    "psutil>=5.9.0",
+    "robotframework>=6.0.0",
+    "robotframework-seleniumlibrary>=6.0.0",
+]
+
+[tool.pytest.ini_options]
+addopts = "-v --cov=me2ai_mcp --cov-report=html --cov-report=term-missing"
+testpaths = ["tests/me2ai_mcp"]
+python_files = "test_*.py"
+markers = [
+    "unit: marks tests as unit tests",
+    "integration: marks tests as integration tests",
+    "performance: marks tests as performance tests",
+    "api: marks tests as API tests",
+    "auth: marks tests as authentication tests",
+    "web: marks tests as web tool tests",
+    "github: marks tests as github tool tests",
+    "filesystem: marks tests as filesystem tests",
+    "slow: marks tests that take longer to run"
+]
+
+[tool.setuptools]
+package-dir = {"" = "."}
+
+[tool.setuptools.packages.find]
+include = ["me2ai_mcp*"]
+
+[project.urls]
+Homepage = "https://github.com/achimdehnert/me2ai"
+Documentation = "https://github.com/achimdehnert/me2ai/tree/main/me2ai_mcp"
+"Bug Tracker" = "https://github.com/achimdehnert/me2ai/issues"

@@ -1,0 +1,11 @@
+pytest>=7.4.0
+pytest-cov>=4.1.0
+pytest-benchmark>=4.0.0
+memory-profiler>=0.61.0
+Faker>=19.3.0
+numpy>=1.25.0
+scipy>=1.11.0
+pytest-xdist>=3.3.0  # For parallel test execution
+pytest-timeout>=2.1.0  # For test timeouts
+pytest-randomly>=3.13.0  # For randomized test ordering
+coverage>=7.3.0  # For code coverage reporting

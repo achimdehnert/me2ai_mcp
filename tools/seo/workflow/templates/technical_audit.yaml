@@ -1,0 +1,126 @@
+name: Technical SEO Audit
+description: Comprehensive technical SEO audit workflow
+steps:
+  - crawl_site:
+      description: Crawl website to collect technical data
+      estimated_time: 60
+      customizable: true
+      customization_points:
+        - crawl_depth:
+            type: int
+            default: 3
+            description: Depth of site crawl
+        - respect_robots:
+            type: bool
+            default: true
+            description: Whether to respect robots.txt
+        - custom_user_agent:
+            type: string
+            default: null
+            description: Custom user agent for crawling
+
+  - analyze_core_vitals:
+      description: Analyze Core Web Vitals performance
+      dependencies: [crawl_site]
+      estimated_time: 30
+      customizable: true
+      customization_points:
+        - metrics:
+            type: list
+            default: [LCP, FID, CLS]
+            description: Core Web Vitals metrics to analyze
+        - sample_size:
+            type: int
+            default: 100
+            description: Number of pages to analyze
+
+  - check_mobile_optimization:
+      description: Check mobile-friendliness
+      dependencies: [crawl_site]
+      estimated_time: 45
+      customizable: true
+      customization_points:
+        - viewport_check:
+            type: bool
+            default: true
+            description: Check viewport configuration
+        - tap_targets:
+            type: bool
+            default: true
+            description: Check tap target sizing
+        - font_size:
+            type: bool
+            default: true
+            description: Check font size legibility
+
+  - audit_site_structure:
+      description: Analyze site architecture
+      dependencies: [crawl_site]
+      estimated_time: 30
+      customizable: true
+      customization_points:
+        - depth_analysis:
+            type: bool
+            default: true
+            description: Analyze click depth
+        - internal_linking:
+            type: bool
+            default: true
+            description: Analyze internal linking
+        - url_structure:
+            type: bool
+            default: true
+            description: Analyze URL structure
+
+  - generate_technical_report:
+      description: Generate comprehensive technical audit report
+      dependencies: [analyze_core_vitals, check_mobile_optimization, audit_site_structure]
+      estimated_time: 15
+      customizable: true
+      customization_points:
+        - report_format:
+            type: string
+            default: html
+            options: [html, pdf, markdown]
+            description: Report output format
+        - include_charts:
+            type: bool
+            default: true
+            description: Include data visualizations
+        - executive_summary:
+            type: bool
+            default: true
+            description: Include executive summary
+
+required_tools:
+  - crawler
+  - performance_analyzer
+  - mobile_tester
+  - structure_analyzer
+  - report_generator
+
+estimated_duration: 180  # minutes
+
+user_input_points:
+  - step: crawl_site
+    fields:
+      - name: start_url
+        type: string
+        required: true
+        description: Starting URL for crawl
+      - name: crawl_depth
+        type: int
+        required: false
+        default: 3
+        description: Maximum crawl depth
+
+  - step: generate_technical_report
+    fields:
+      - name: report_title
+        type: string
+        required: true
+        description: Title for the report
+      - name: brand_logo
+        type: string
+        required: false
+        description: Path to brand logo for report

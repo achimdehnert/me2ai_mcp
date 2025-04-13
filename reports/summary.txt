@@ -1,0 +1,20 @@
+ME2AI MCP Test Summary
+=====================
+
+Generated: 2025-04-13 11:31:14
+
+Test Reports:
+- HTML Report: html_report_20250413_113110.html
+- Coverage Report: coverage_20250413_113110.xml
+
+Options:
+- unit_only: False
+- integration_only: False
+- performance_only: False
+- skip_performance: False
+- report_dir: reports
+- html: True
+- xml: False
+- json: False
+- cov: True
+- debug: False
