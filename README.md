@@ -11,9 +11,10 @@ This framework provides a consistent foundation for all ME2AI MCP server impleme
 - **Enhanced Base Classes**: `ME2AIMCPServer` with built-in logging, error handling, and statistics tracking
 - **Improved Tool Registration**: `register_tool` decorator with automatic error handling
 - **Authentication System**: API Key and Token authentication with environment variable support
+- **Agent-Tool Routing Layer**: Intelligent request routing with specialized agents and dynamic tool discovery
 - **Built-in Utilities**: Text sanitization, response formatting, HTML processing
 - **Standardized Patterns**: Consistent response structures and error formats
-- **Comprehensive Testing**: Unit, integration, and performance tests with 80%+ coverage
+- **Comprehensive Testing**: Unit, integration, and performance tests with 100% coverage for core components
 - **CI/CD Integration**: GitHub Actions workflows for automated testing and quality assurance
 - **Code Quality Tools**: Automated linting, formatting, and type checking
 
@@ -24,7 +25,7 @@ This framework provides a consistent foundation for all ME2AI MCP server impleme
 pip install me2ai_mcp
 
 # Install specific version
-pip install me2ai_mcp==0.0.6
+pip install me2ai_mcp==0.0.7
 
 # Install from GitHub
 pip install git+https://github.com/achimdehnert/me2ai_mcp.git
@@ -44,6 +45,60 @@ pip install git+https://github.com/achimdehnert/me2ai_mcp.git
 ```
 
 See [INSTALLATION.md](INSTALLATION.md) for detailed installation options.
+
+## Agent-Tool Routing Layer
+
+Die neue Routing-Schicht in Version 0.0.7 ermöglicht intelligentes Routing von Anfragen an spezialisierte Agenten basierend auf Anfragemuster und Toolkategorien:
+
+### Hauptkomponenten
+
+- **BaseAgent**: Basisklasse für alle Agenten-Implementierungen
+- **RoutingAgent**: Agent mit dynamischer Tool-Auswahl basierend auf Anfragen
+- **SpecializedAgent**: Domänenspezifischer Agent für bestimmte Toolsets
+- **MCPRouter**: Zentrale Komponente für Anfragen-Weiterleitung und Agentenverwaltung
+
+### Beispiel: Agent-Routing-System
+
+```python
+from me2ai_mcp import ME2AIMCPServer, SpecializedAgent, MCPRouter, RoutingRule
+
+# Server mit Tools erstellen
+server = ME2AIMCPServer("routing_example")
+
+@server.register_tool
+def process_text(text):
+    """Verarbeitet Text."""
+    return {"processed": text.upper()}
+
+@server.register_tool
+def store_data(data):
+    """Speichert Daten."""
+    return {"stored": True, "data": data}
+
+# Router erstellen
+router = MCPRouter(server)
+
+# Spezialisierte Agenten registrieren
+text_agent = SpecializedAgent(
+    "text_agent", "Text Agent", tool_names=["process_text"]
+)
+data_agent = SpecializedAgent(
+    "data_agent", "Data Agent", tool_names=["store_data"]
+)
+
+router.register_agent(text_agent)
+router.register_agent(data_agent)
+
+# Routing-Regeln hinzufügen
+router.add_routing_rule(RoutingRule("text|process", "text_agent", 100))
+router.add_routing_rule(RoutingRule("data|store", "data_agent", 90))
+
+# Anfragen verarbeiten
+result_text = router.process_request("Process this text")
+result_data = router.process_request("Store some data")
+```
+
+Weitere Details und Beispiele finden Sie in den Beispielen im `examples/`-Verzeichnis.
 
 ## Quick Start
 
