@@ -2,10 +2,16 @@
 Setup script for the ME2AI MCP package.
 """
 from setuptools import setup, find_packages
+import os
+import sys
+
+# Add the project directory to the path to import version
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), 'me2ai_mcp')))
+from version import __version__
 
 setup(
     name="me2ai_mcp",
-    version="0.0.6",
+    version=__version__,
     description="Enhanced Model Context Protocol framework for ME2AI agents and services",
     author="ME2AI Team",
     author_email="info@me2ai.dev",

@@ -10,7 +10,12 @@ from .utils import sanitize_input, format_response, extract_text
 from .agents import BaseAgent, RoutingAgent, SpecializedAgent, ToolCategory, DEFAULT_CATEGORIES
 from .routing import RoutingRule, AgentRegistry, MCPRouter, create_default_rules
 
-__version__ = "0.0.7"
+# Import new components
+from .tools_registry import ToolRegistry, register_tool, global_registry, discover_tools_in_module, discover_tools_in_package
+from .collaborative_agent import CollaborativeAgent, CollaborationManager, CollaborationContext, global_collaboration_manager
+from .dynamic_routing import AdaptiveRouter, PerformanceMetrics
+from .marketplace import ToolMarketplace, ToolRepository, ToolMetadata, global_marketplace
+from .version import __version__
 
 __all__ = [
     # Base server and tools
@@ -38,5 +43,28 @@ __all__ = [
     "RoutingRule",
     "AgentRegistry",
     "MCPRouter",
-    "create_default_rules"
+    "create_default_rules",
+    
+    # Enhanced Tool Registry
+    "ToolRegistry",
+    "register_tool",
+    "global_registry",
+    "discover_tools_in_module",
+    "discover_tools_in_package",
+    
+    # Collaborative Agents
+    "CollaborativeAgent",
+    "CollaborationManager",
+    "CollaborationContext",
+    "global_collaboration_manager",
+    
+    # Dynamic Routing
+    "AdaptiveRouter",
+    "PerformanceMetrics",
+    
+    # Tool Marketplace
+    "ToolMarketplace",
+    "ToolRepository",
+    "ToolMetadata",
+    "global_marketplace"
 ]

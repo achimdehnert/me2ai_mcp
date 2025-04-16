@@ -23,7 +23,7 @@ def main():
     server = ME2AIMCPServer(
         server_name="github_mcp_server",
         description="GitHub Integration ME2AI MCP Server",
-        version="0.0.7"
+        version="0.0.8"
     )
     
     print(f"Starting {server.description} (v{server.version})")

@@ -1,6 +1,6 @@
 # ME2AI MCP - Enhanced Model Context Protocol Framework
 
-The ME2AI MCP package extends the official MCP (Model Context Protocol) package with enhanced functionality for building robust MCP servers with standardized patterns, tools, and utilities.
+The ME2AI MCP package extends the official MCP (Model Context Protocol) package with enhanced functionality for building robust MCP servers with standardized patterns, tools, and utilities. Version 0.1.0 introduces powerful new capabilities for advanced agent-based systems, including collaborative agents, adaptive routing, and a dynamic tool marketplace.
 
 ## Overview
 
@@ -8,15 +8,27 @@ This framework provides a consistent foundation for all ME2AI MCP server impleme
 
 ## Features
 
+### Core Framework (v0.0.6+)
 - **Enhanced Base Classes**: `ME2AIMCPServer` with built-in logging, error handling, and statistics tracking
 - **Improved Tool Registration**: `register_tool` decorator with automatic error handling
 - **Authentication System**: API Key and Token authentication with environment variable support
-- **Agent-Tool Routing Layer**: Intelligent request routing with specialized agents and dynamic tool discovery
 - **Built-in Utilities**: Text sanitization, response formatting, HTML processing
 - **Standardized Patterns**: Consistent response structures and error formats
 - **Comprehensive Testing**: Unit, integration, and performance tests with 100% coverage for core components
 - **CI/CD Integration**: GitHub Actions workflows for automated testing and quality assurance
 - **Code Quality Tools**: Automated linting, formatting, and type checking
+
+### Agent-Tool Routing Layer (v0.0.8+)
+- **Intelligent Request Routing**: Route requests to specialized agents based on patterns
+- **Agent Abstraction**: BaseAgent, RoutingAgent, and SpecializedAgent classes
+- **Tool Categorization**: Organize tools into logical categories
+- **Dynamic Tool Discovery**: Automatic discovery and selection of appropriate tools
+
+### Advanced Capabilities (v0.1.0)
+- **Tool Registry System**: Dynamic tool registration, discovery, and management across packages
+- **Collaborative Agent Framework**: Inter-agent communication and collaboration context management
+- **Adaptive Dynamic Routing**: Performance-based agent selection with learning capabilities
+- **Tool Marketplace**: Discovery, installation, and sharing of tools between MCP instances
 
 ## Installation
 
@@ -25,7 +37,7 @@ This framework provides a consistent foundation for all ME2AI MCP server impleme
 pip install me2ai_mcp
 
 # Install specific version
-pip install me2ai_mcp==0.0.7
+pip install me2ai_mcp==0.1.0
 
 # Install from GitHub
 pip install git+https://github.com/achimdehnert/me2ai_mcp.git
@@ -48,37 +60,37 @@ See [INSTALLATION.md](INSTALLATION.md) for detailed installation options.
 
 ## Agent-Tool Routing Layer
 
-Die neue Routing-Schicht in Version 0.0.7 ermöglicht intelligentes Routing von Anfragen an spezialisierte Agenten basierend auf Anfragemuster und Toolkategorien:
+The Agent-Tool Routing Layer introduced in v0.0.8 enables intelligent routing of requests to specialized agents based on request patterns and tool categories:
 
-### Hauptkomponenten
+### Main Components
 
-- **BaseAgent**: Basisklasse für alle Agenten-Implementierungen
-- **RoutingAgent**: Agent mit dynamischer Tool-Auswahl basierend auf Anfragen
-- **SpecializedAgent**: Domänenspezifischer Agent für bestimmte Toolsets
-- **MCPRouter**: Zentrale Komponente für Anfragen-Weiterleitung und Agentenverwaltung
+- **BaseAgent**: Base class for all agent implementations
+- **RoutingAgent**: Agent with dynamic tool selection based on requests
+- **SpecializedAgent**: Domain-specific agent for dedicated toolsets
+- **MCPRouter**: Central component for request routing and agent management
 
-### Beispiel: Agent-Routing-System
+### Example: Agent-Routing System
 
 ```python
 from me2ai_mcp import ME2AIMCPServer, SpecializedAgent, MCPRouter, RoutingRule
 
-# Server mit Tools erstellen
+# Create server with tools
 server = ME2AIMCPServer("routing_example")
 
 @server.register_tool
 def process_text(text):
-    """Verarbeitet Text."""
+    """Process text."""
     return {"processed": text.upper()}
 
 @server.register_tool
 def store_data(data):
-    """Speichert Daten."""
+    """Store data."""
     return {"stored": True, "data": data}
 
-# Router erstellen
+# Create router
 router = MCPRouter(server)
 
-# Spezialisierte Agenten registrieren
+# Register specialized agents
 text_agent = SpecializedAgent(
     "text_agent", "Text Agent", tool_names=["process_text"]
 )
@@ -89,16 +101,16 @@ data_agent = SpecializedAgent(
 router.register_agent(text_agent)
 router.register_agent(data_agent)
 
-# Routing-Regeln hinzufügen
+# Add routing rules
 router.add_routing_rule(RoutingRule("text|process", "text_agent", 100))
 router.add_routing_rule(RoutingRule("data|store", "data_agent", 90))
 
-# Anfragen verarbeiten
+# Process requests
 result_text = router.process_request("Process this text")
 result_data = router.process_request("Store some data")
 ```
 
-Weitere Details und Beispiele finden Sie in den Beispielen im `examples/`-Verzeichnis.
+For more details and examples, see the examples in the `examples/` directory.
 
 ## Quick Start
 
