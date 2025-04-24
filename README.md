@@ -1,6 +1,6 @@
 # ME2AI MCP - Enhanced Model Context Protocol Framework
 
-The ME2AI MCP package extends the official MCP (Model Context Protocol) package with enhanced functionality for building robust MCP servers with standardized patterns, tools, and utilities. Version 0.1.0 introduces powerful new capabilities for advanced agent-based systems, including collaborative agents, adaptive routing, and a dynamic tool marketplace.
+The ME2AI MCP package extends the official MCP (Model Context Protocol) package with enhanced functionality for building robust MCP servers with standardized patterns, tools, and utilities. Version 0.1.2 introduces a scalable Vector Store service with multiple backend support (ChromaDB, FAISS, Qdrant, Pinecone), along with the database integrations (PostgreSQL and MySQL) and LangChain compatibility introduced in v0.1.1.
 
 ## Overview
 
@@ -30,6 +30,13 @@ This framework provides a consistent foundation for all ME2AI MCP server impleme
 - **Adaptive Dynamic Routing**: Performance-based agent selection with learning capabilities
 - **Tool Marketplace**: Discovery, installation, and sharing of tools between MCP instances
 
+### Database Integrations (v0.1.1)
+- **Flexible Database Credentials**: Support for environment variables, JSON files, and multiple connection specifications
+- **PostgreSQL Integration**: Comprehensive PostgreSQL support with connection pooling and schema validation
+- **MySQL Integration**: Robust MySQL tools with connection pooling and enhanced error handling
+- **LangChain Compatibility**: Ready-to-use LangChain tool adapters for all database components
+- **Comprehensive Test Suite**: Test coverage across database integrations and framework components
+
 ## Installation
 
 ```bash
@@ -37,7 +44,7 @@ This framework provides a consistent foundation for all ME2AI MCP server impleme
 pip install me2ai_mcp
 
 # Install specific version
-pip install me2ai_mcp==0.1.0
+pip install me2ai_mcp==0.1.1
 
 # Install from GitHub
 pip install git+https://github.com/achimdehnert/me2ai_mcp.git
@@ -47,6 +54,15 @@ pip install me2ai_mcp[all]
 
 # Install with specific feature set
 pip install me2ai_mcp[web]
+
+# Install with database support
+pip install me2ai_mcp[db]
+
+# Install PostgreSQL support only
+pip install me2ai_mcp[postgres]
+
+# Install MySQL support only
+pip install me2ai_mcp[mysql]
 ```
 
 Alternatively, install directly from GitHub:
