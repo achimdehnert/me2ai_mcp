@@ -15,6 +15,7 @@ from .tools_registry import ToolRegistry, register_tool, global_registry, discov
 from .collaborative_agent import CollaborativeAgent, CollaborationManager, CollaborationContext, global_collaboration_manager
 from .dynamic_routing import AdaptiveRouter, PerformanceMetrics
 from .marketplace import ToolMarketplace, ToolRepository, ToolMetadata, global_marketplace
+from .llm_fallback import LLMFallbackMixin, LLMProvider
 from .version import __version__
 
 __all__ = [
@@ -44,6 +45,10 @@ __all__ = [
     "AgentRegistry",
     "MCPRouter",
     "create_default_rules",
+    
+    # LLM fallback functionality
+    "LLMFallbackMixin",
+    "LLMProvider",
     
     # Enhanced Tool Registry
     "ToolRegistry",

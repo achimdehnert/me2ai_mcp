@@ -7,6 +7,13 @@ from .web import WebFetchTool, HTMLParserTool, URLUtilsTool
 from .filesystem import FileReaderTool, FileWriterTool, DirectoryListerTool
 from .github import GitHubRepositoryTool, GitHubCodeTool, GitHubIssuesTool
 
+# Import FireCrawl tools if available
+try:
+    from .firecrawl import FireCrawlTool, WebContentTool, create_firecrawl_tool
+    FIRECRAWL_AVAILABLE = True
+except ImportError:
+    FIRECRAWL_AVAILABLE = False
+
 __all__ = [
     # Web tools
     "WebFetchTool",
@@ -23,3 +30,12 @@ __all__ = [
     "GitHubCodeTool",
     "GitHubIssuesTool"
 ]
+
+# Add FireCrawl tools to __all__ if available
+if FIRECRAWL_AVAILABLE:
+    __all__.extend([
+        # FireCrawl tools
+        "FireCrawlTool",
+        "WebContentTool", 
+        "create_firecrawl_tool"
+    ])
