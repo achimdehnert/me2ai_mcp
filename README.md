@@ -1,34 +1,63 @@
-# ME2AI MCP - Enhanced Model Context Protocol Framework
+# ME2AI MCP - Self-Contained Model Context Protocol Framework
 
-The ME2AI MCP package extends the official MCP (Model Context Protocol) package with enhanced functionality for building robust MCP servers with standardized patterns, tools, and utilities. Version 0.1.2 introduces a scalable Vector Store service with multiple backend support (ChromaDB, FAISS, Qdrant, Pinecone), along with the database integrations (PostgreSQL and MySQL) and LangChain compatibility introduced in v0.1.1.
+ME2AI MCP is a self-contained Model Context Protocol framework that provides standardized patterns, tools, and utilities for building robust AI applications. Version 0.2.0 introduces a highly modularized architecture with specialized handlers for vector stores and embeddings, comprehensive Robot Framework test integration, and enhanced provider-agnostic design for easier integration with applications like the ME2AI Knowledge Assistant.
 
 ## Overview
 
-This framework provides a consistent foundation for all ME2AI MCP server implementations with improved error handling, logging, and statistics tracking. All ME2AI services should use this package as a foundation for their MCP implementations.
+ME2AI MCP ist ein selbstständiges Framework, das eine vollständige, unabhängige Implementierung des Model Context Protocol bietet. Die Architektur folgt einer sauberen, modularen Struktur mit klarer Trennung der Verantwortlichkeiten:
+
+* **Core**: Zentrale Abstraktionen, Protokolle und Basisklassen
+* **Clients**: Implementierungen für verschiedene MCP-Server (OpenAI, Anthropic, Groq, ME2AI, etc.)
+* **Adapters**: Austauschbare Komponenten für Vector Stores, Embedding-Provider und externe Integrationen
+* **Services**: Höherwertige Dienste mit spezialisierten Handlern für Vector-Store-Management und Embedding
+* **Handlers**: Spezialisierte Handler für verschiedene Backends (ChromaDB, FAISS, Qdrant, OpenAI, etc.)
+* **Utils**: Hilfsfunktionen für Text, Netzwerk, Konfiguration und mehr
+
+Die Version 0.2.0 führt eine vollständig modularisierte Handler-Architektur ein und verbessert die Testbarkeit durch umfassende Robot Framework Integration.
 
 ## Features
 
-### Core Framework (v0.0.6+)
-- **Enhanced Base Classes**: `ME2AIMCPServer` with built-in logging, error handling, and statistics tracking
-- **Improved Tool Registration**: `register_tool` decorator with automatic error handling
-- **Authentication System**: API Key and Token authentication with environment variable support
-- **Built-in Utilities**: Text sanitization, response formatting, HTML processing
-- **Standardized Patterns**: Consistent response structures and error formats
-- **Comprehensive Testing**: Unit, integration, and performance tests with 100% coverage for core components
-- **CI/CD Integration**: GitHub Actions workflows for automated testing and quality assurance
-- **Code Quality Tools**: Automated linting, formatting, and type checking
+### Core Architecture (v0.2.0)
 
-### Agent-Tool Routing Layer (v0.0.8+)
-- **Intelligent Request Routing**: Route requests to specialized agents based on patterns
-- **Agent Abstraction**: BaseAgent, RoutingAgent, and SpecializedAgent classes
-- **Tool Categorization**: Organize tools into logical categories
-- **Dynamic Tool Discovery**: Automatic discovery and selection of appropriate tools
+* **Modularisierte Handler-Architektur**: Spezialisierte Handler für verschiedene Backends und Services
+* **Protokoll- und Interface-basiertes Design**: Sauber definierte Protokolle für alle Komponenten
+* **Provider-agnostische Strategien**: Austauschbare Strategien für Embedding und Vector Stores
+* **Robuste Fehlerbehandlung**: Einheitliche Fehlerklassenhierarchie und verbesserte Logging-Struktur
+* **Pydantic-basierte Typsicherheit**: Validierung und Typsicherheit für alle Datenstrukturen
+* **Umgebungsvariablen-Unterstützung**: Konfiguration über Umgebungsvariablen oder Parameter
+* **Comprehensive Testing**: Robot Framework Testsuite für alle Komponenten
 
-### Advanced Capabilities (v0.1.0)
-- **Tool Registry System**: Dynamic tool registration, discovery, and management across packages
-- **Collaborative Agent Framework**: Inter-agent communication and collaboration context management
-- **Adaptive Dynamic Routing**: Performance-based agent selection with learning capabilities
-- **Tool Marketplace**: Discovery, installation, and sharing of tools between MCP instances
+### Universal Client System
+
+* **Einheitliche Client-Schnittstelle**: Generischer Zugriff auf verschiedene MCP-Server
+* **Client-Registrierung**: Dynamische Registrierung und Discovery von Client-Implementierungen
+* **Multi-Provider-Support**: Unterstützung für OpenAI, Anthropic, Groq, ME2AI, lokale Server
+* **Automatische Discovery**: Erkennung verfügbarer MCP-Server in der Umgebung
+* **Kontextmanager-Unterstützung**: Ressourcenverwaltung mit `async with`-Syntax
+
+### Vector Store System
+
+* **Spezialisierte Handler-Struktur**: Dedizierte Handler für ChromaDB, FAISS, Qdrant, Pinecone
+* **Einheitliche Fehlerbehandlung**: Konsistente Fehlerklassen über alle Backends hinweg
+* **Verbesserte Metadaten-Filterung**: Erweiterte Filtermöglichkeiten für präzise Abfragen
+* **Chunking & Verarbeitung**: Integrierte Text-Extraktion und Dokumentenverarbeitung
+* **Robot Framework Tests**: Umfassende Testsuite für alle Vector Store Backends
+
+### Embedding System
+
+* **EmbeddingStrategy Protocol**: Klare Schnittstelle für alle Embedding-Provider
+* **Factory-basierte Instanziierung**: Flexible `create_embedding_strategy`-Factory
+* **Spezialisierte Handler**: Dedizierte Handler für OpenAI, Sentence Transformers, Cohere, HuggingFace
+* **Lokale Modelle**: Verbesserte Unterstützung für SentenceTransformers mit Model-Caching
+* **Cloud-Provider**: Integration mit OpenAI, Cohere und anderen Cloud-Embedding-Diensten
+* **Robot Framework Tests**: Umfassende Testsuite für alle Embedding-Provider
+
+### Tool Routing & Orchestration
+
+* **Tool Router Service**: Intelligentes Routing von Tool-Aufrufen an verschiedene Provider
+* **Provider-Priorisierung**: Konfigurierbare Präferenzen für verschiedene Tool-Typen
+* **Parallele Ausführung**: Asynchrone Ausführung von Tools über mehrere Provider
+* **Fehlertoleranz**: Automatische Wiederholungsversuche und Failover-Mechanismen
 
 ### Database Integrations (v0.1.1)
 - **Flexible Database Credentials**: Support for environment variables, JSON files, and multiple connection specifications
@@ -63,6 +92,15 @@ pip install me2ai_mcp[postgres]
 
 # Install MySQL support only
 pip install me2ai_mcp[mysql]
+
+# Install embedding support
+pip install me2ai_mcp[embeddings]
+
+# Install LLM support
+pip install me2ai_mcp[llm]
+
+# Install Robot Framework testing support
+pip install me2ai_mcp[robotframework]
 ```
 
 Alternatively, install directly from GitHub:
@@ -153,6 +191,31 @@ def process_data(input_text: str):
 result = server.execute_tool("process_data", {"input_text": "hello world"})
 print(result)  # {'processed': 'HELLO WORLD', 'length': 11}
 ```
+
+## Testing with Robot Framework
+
+ME2AI MCP now includes comprehensive testing with Robot Framework:
+
+```bash
+# Setup the Robot Framework environment
+python setup_robot_environment.py
+
+# Run all tests
+robot --outputdir results tests/robot/
+
+# Run specific test categories
+robot --outputdir results --include knowledge-assistant tests/robot/
+robot --outputdir results --include embedding tests/robot/
+robot --outputdir results --include openai tests/robot/
+```
+
+For more details on the test structure and how to run tests, see the [Robot Framework README](tests/robot/README.md).
+
+## Integration Guides
+
+Detailed integration guides for common use cases:
+
+- [Knowledge Assistant Integration Guide](docs/integration_guides/knowledge_assistant_integration.md): How to integrate ME2AI MCP with Knowledge Assistant applications
 
 ## Core Components
 
